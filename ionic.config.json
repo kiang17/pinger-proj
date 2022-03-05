@@ -1,0 +1,7 @@
+{
+  "name": "pinger-proj",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
