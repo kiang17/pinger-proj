@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title [routerLink]="['/competitions']">
+      Soccer Info!
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <!-- Season selection buttons -->
+    <section class="season-selection">
+
+      <!-- NOTE: due to the small number of unqiue seasons we currently get, I prefer the streamlined of 
+          being able to directly click on each season (via buttons below). A drop down or potentially a searchable 
+          drop down could be a good alternative as the number of unqiue seasons grows. -->
+
+      <button class="select-option" *ngFor="let option of options" (click)="updateSelectedSeason(option)"
+        [class.active]="option === currentYear">{{option}}</button>
+    </section>
+    <!-- CAT for intial page state -->
+    <h3 class="selection-call-to-action" *ngIf="!currentYear">Please select a season above</h3>
+    <!-- Competitions list title -->
+    <h3 class="selection-data-title" *ngIf="currentYear">Competitions from {{currentYear}} season</h3>
+
+    <!-- NOTE: depending on the expected maximum amount of competititons returned for any given season. I think a load on 
+      scroll with an inline search function or pagination could be a good addition to the functionality. -->
+
+    <!-- Competitions list  -->
+    <ul class="competition-list">
+      <li class="competition-list-item" *ngFor="let comp of competitionsByYear[currentYear]">
+        <app-info-card title={{comp.name}} [routerLink]="['/competitions', comp.id]"></app-info-card>
+
+        <!-- NOTE: plan was to extend app-info-card functionality a bit to pass in html to display a 
+          bit more info for each competition -->
+
+      </li>
+    </ul>
+  </div>
+</ion-content>

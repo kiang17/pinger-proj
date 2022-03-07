@@ -1,0 +1,77 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 0;
+
+    .team-details {
+        border-radius: 8px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        padding: 25px 0;
+        background: white;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-bottom: 25px;
+        width: 95%;
+
+        @media screen and (min-width: 500px) {
+            width: 60%;
+        }
+
+        .image-wrapper {
+            .team-crest{
+                height: auto;
+                width: 250px;
+            }
+        }
+
+        .info-section {
+            display: flex;
+            flex-direction: column;
+
+            .team-name {
+                margin-top: 0;
+            }
+        }
+
+    }
+
+    .table-container {
+        width: 95%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border-radius: 8px;
+        background: white;
+
+        @media screen and (min-width: 500px) {
+            width: 60%;
+        }
+
+        .squad-list-table {
+            .table-header {
+                text-align: left;
+                padding-right: 20px;
+    
+            }
+    
+            .table-row {
+                border-bottom: lightgray 1px solid;
+                padding-bottom: 5px;
+            }
+            
+            .table-data,.table-header {
+                padding-right: 20px;
+                padding-bottom: 3px;
+            }
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+}

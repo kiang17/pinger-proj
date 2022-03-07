@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title [routerLink]="['/competitions']">
+      <div>Soccer Info!</div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <button class="back-btn" (click)="navBack()">
+    &#8249; back to competiition details
+  </button>
+  <div class="container">
+    <!-- Team Crest & Information Section -->
+    <section *ngIf="(teamDetails$ |async)" class="team-details">
+      <div class="image-wrapper">
+        <img class="team-crest" src="{{(teamDetails$ |async)?.crestUrl}}" alt="">
+      </div>
+      <div class="info-section">
+        <h3 class="team-name">{{(teamDetails$ | async)?.name}}</h3>
+        <div class="info">
+          <div>
+            <span>Location:</span>
+            {{(teamDetails$ | async)?.area.name}}
+          </div>
+          <div>Club Colors: {{(teamDetails$ | async)?.clubColors}}</div>
+          <div>Website: {{(teamDetails$ | async)?.website}}</div>
+          <div>Telephone: {{(teamDetails$ | async)?.phone}}</div>
+          <div>Address: {{(teamDetails$ | async)?.address}}</div> <!-- can use <address> here-->
+          <div>Year Founded: {{(teamDetails$ | async)?.founded}}</div>
+          <div>Team Venue: {{(teamDetails$ | async)?.venue}}</div>
+        </div>
+      </div>
+    </section>
+    <!-- Team Squad Section -->
+    <section *ngIf="(teamDetails$ | async)?.squad?.length" class="table-container">
+      <table class="squad-list-table">
+        <tr class="table-row">
+          <th class="table-header">Name</th>
+          <th class="table-header">Position</th>
+          <th class="table-header">DOB</th>
+          <th class="table-header">Nationality</th>
+          <th class="table-header">Country of Birth</th>
+          <th class="table-header">Role</th>
+        </tr>
+        <tr *ngFor="let member of (teamDetails$ | async)?.squad" class="table-row">
+          <td class="table-data">{{member.name}}</td>
+          <td class="table-data">{{member.position}}</td>
+          <td class="table-data">{{member.dateOfBirth | date:'mediumDate'}}</td>
+          <td class="table-data">{{member.nationality}}</td>
+          <td class="table-data">{{member.countryOfBirth}}</td>
+          <td class="table-data">{{member.role}}</td>
+        </tr>
+      </table>
+    </section>
+  </div>
+</ion-content>

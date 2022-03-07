@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title [routerLink]="['/competitions']">
+      Soccer Info!
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <button class="back-btn" (click)="navBack()">
+    &#8249; back to competitions
+  </button>
+  <div class="container">
+    <!-- Competition Header Info -->
+    <H2>{{(competitionDetails$ | async)?.competition.name}}</H2>
+    <H4>Teams from the {{competitionYear}} Season</H4>
+    <!-- Teams in competition -->
+    <ul class="team-list">
+      <li class="team-list-item" *ngFor="let team of (competitionDetails$ | async)?.teams">
+        <app-info-card [routerLink]="['/teams', team.id]" title={{team.name}} imgUrl={{team.crestUrl}}>
+        </app-info-card>
+      </li>
+    </ul>
+  </div>
+</ion-content>
